@@ -68,6 +68,7 @@ public class MainActivity extends Activity {
                             editText.setText(EMPTY_STRING);
                             editText2.setText(EMPTY_STRING);
                             adapter.notifyDataSetChanged();
+                            editFlag = false;
                         }
                         else{
                             FoodOrder newFoodOrder = new FoodOrder(name,price,ID);
@@ -78,6 +79,8 @@ public class MainActivity extends Activity {
                             emailIntent.putExtra(Intent.EXTRA_SUBJECT, "New Food Order");
                             emailIntent.putExtra(Intent.EXTRA_TEXT, newFoodOrder.toString());
                             startActivity(Intent.createChooser(emailIntent, "Send email..."));
+                            editText.setText(EMPTY_STRING);
+                            editText2.setText(EMPTY_STRING);
                         }
                     }
                 }

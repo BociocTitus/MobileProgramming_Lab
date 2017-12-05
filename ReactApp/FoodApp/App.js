@@ -1,28 +1,21 @@
 import React from 'react';
 import Main from './App/Main.js';
 import {StackNavigator} from 'react-navigation';
-import AddOrder from './App/AddOrder'
-global.dataArray = [
-  {
-    id:1,
-    Food:'dfsa',
-    Price:2.3
-  },
-  {
-    id:2,
-    Food:'dfsazz',
-    Price:3.3
-  }
-]
-global.id = 3;
+import AddOrder from './App/AddOrder';
+import PieChartBasic from './App/Charts';
+global.dataArray = [];
+global.id = 1;
 const ModalStack = StackNavigator({
-  Home: {
-    screen: Main,
-  },
-  Profile: {
-    path: 'addOrder/:order',
-    screen: AddOrder,
-  },
+    Home: {
+        screen: Main,
+    },
+    Profile: {
+        path: 'addOrder/:order',
+        screen: AddOrder,
+    },
+    Charts: {
+        screen: PieChartBasic
+    }
 });
 
 export default ModalStack;
