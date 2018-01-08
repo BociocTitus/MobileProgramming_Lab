@@ -84,6 +84,7 @@ public class FoodOrderAdapter extends BaseAdapter {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         foodOrderDAO.delete(items.get(pos));
+                                        System.out.println(foodOrderDAO.getAll());
                                         items.remove(pos);
                                         notifyWrapper();
                                     }

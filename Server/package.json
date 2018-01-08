@@ -1,0 +1,32 @@
+{
+  "name": "food-app-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BociocTitus/MobileProgramming_Lab.git"
+  },
+  "author": "BociocTitus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BociocTitus/MobileProgramming_Lab/issues"
+  },
+  "homepage": "https://github.com/BociocTitus/MobileProgramming_Lab#readme",
+  "devDependencies": {
+    "nodemon": "^1.14.3"
+  },
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.0",
+    "mongoose": "^4.13.7",
+    "nodejs-websocket": "^1.7.1"
+  }
+}
