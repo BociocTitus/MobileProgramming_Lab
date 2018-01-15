@@ -3,13 +3,14 @@
  */
 'use strict';
 module.exports = function(app) {
-    var ordersController = require('../controllers/OrdersController'),
+    let ordersController = require('../controllers/OrdersController'),
         usersController = require('../controllers/UserController');
 
     app.route('/orders')
         .get(usersController.normal_role_required, ordersController.list_all_Orders)
         .post(usersController.admin_role_required, ordersController.create_a_Order);
-
+    app.route('/token')
+        .post(ordersController.push_token);
     app.route('/order/:orderId')
         .get(usersController.normal_role_required, ordersController.read_a_Order)
         .put(usersController.admin_role_required, ordersController.update_a_Order)

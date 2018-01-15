@@ -2,10 +2,10 @@
  * Created by Titus on 12/27/2017.
  */
 'use strict';
-var mongoose = require('mongoose'),
+let mongoose = require('mongoose'),
     bcrypt = require('bcrypt');
-var Schema = mongoose.Schema;
-var UserSchema = new Schema({
+let Schema = mongoose.Schema;
+let UserSchema = new Schema({
         _id: {
             type: Schema.Types.ObjectId,
             default: function () { return new mongoose.Types.ObjectId()}

@@ -2,11 +2,12 @@
  * Created by Titus on 12/27/2017.
  */
 'use strict';
-var mongoose = require('mongoose'),
+let mongoose = require('mongoose'),
     Order = mongoose.model('Order'),
     socketServer = require('../update-server');
 socketServer.getServer();
-var broadcast = socketServer.changeOccured;
+let broadcast = socketServer.changeOccured;
+
 exports.list_all_Orders = function(req, res) {
     console.log("listAllOrders called");
     Order.find({}, function(err, order) {
@@ -16,9 +17,15 @@ exports.list_all_Orders = function(req, res) {
     });
 };
 
+exports.push_token = function(req, res){
+    let token = req.body.token;
+    socketServer.add_token(token);
+    res.json({message: 'Token added!'});
+};
+
 exports.create_a_Order = function(req, res) {
     console.log("create order called");
-    var new_Order = new Order(req.body);
+    let new_Order = new Order(req.body);
     new_Order.save(function(err, order) {
         if (err)
             res.send(err);
@@ -29,9 +36,9 @@ exports.create_a_Order = function(req, res) {
 
 exports.merge = function(req, res){
     console.log('Merge called');
-    var orders = JSON.parse(req.body.array);
+    let orders = JSON.parse(req.body.array);
     if(orders.length !== 0 ){
-        for(var i=0;i<orders.length;i++){
+        for(let i=0;i<orders.length;i++){
             if(orders[i].state === 'DELETED'){
                 Order.remove({
                     _id: orders[i]._id
@@ -47,7 +54,7 @@ exports.merge = function(req, res){
                     });
             }
             if(orders[i].state === 'CREATED'){
-                var new_Order = new Order(orders[i].order);
+                let new_Order = new Order(orders[i].order);
                 new_Order.save(function(err, order) {
                     if (err)
                         throw err;

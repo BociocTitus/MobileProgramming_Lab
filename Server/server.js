@@ -3,7 +3,7 @@
  * Created by Titus on 12/27/2017.
  */
 
-var express = require('express'),
+let express = require('express'),
     app = express(),
     jsonwebtoken = require("jsonwebtoken"),
     port = process.env.PORT || 3000,
@@ -40,7 +40,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-var routes = require('./routes/OrderRoute'); //importing route
+let routes = require('./routes/OrderRoute'); //importing route
 routes(app); //register the route
 
 

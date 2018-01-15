@@ -3,13 +3,13 @@
  */
 'use strict';
 
-var mongoose = require('mongoose'),
+let mongoose = require('mongoose'),
     User = mongoose.model('User'),
     jwt = require('jsonwebtoken'),
     bcrypt = require('bcrypt');
 
 exports.register = function(req, res){
-    var new_User = new User(req.body);
+    let new_User = new User(req.body);
     new_User.hashPassword = bcrypt.hashSync(req.body.password, 10);
     new_User.save(function(err, user) {
         if (err) {

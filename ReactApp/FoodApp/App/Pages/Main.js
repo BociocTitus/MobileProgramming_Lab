@@ -4,6 +4,10 @@ import AsyncStorageHelper from "../Helper/AsynStorageHelper";
 import {OrderService} from "../Service/OrderService";
 import {LoginService} from "../Service/LoginService";
 import SyncHelper from "../Helper/SyncHelper";
+import {NotificationService} from "../Service/NotificationService";
+import {
+    Notifications,
+} from 'expo';
 var dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => {return r1._id !== r2._id;}});
 export default class Main extends React.Component{
     constructor(props) {
@@ -13,6 +17,9 @@ export default class Main extends React.Component{
         this.orders = [];
         this.loginService = new LoginService();
         this.syncHelper = SyncHelper.getInstance(this.refresh);
+        this.notificationService = new NotificationService();
+        this.notificationService.registerForPushNotificationsAsync().then().catch();
+        this._notificationSubscription = Notifications.addListener(this._handleNotification);
         this.syncHelper.checkConnection().then(res=>{
             if(res){
                 this.syncHelper.new_web_socket();
@@ -24,7 +31,9 @@ export default class Main extends React.Component{
             dataSource: dataSource.cloneWithRows(this.orders)
         }
     }
-
+    _handleNotification = (notification) => {
+        this.setState({notification: notification});
+    };
     refresh() {
         this.orders = global.dataArray;
         this.setState(prevState => {

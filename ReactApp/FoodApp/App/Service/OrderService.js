@@ -7,9 +7,9 @@ import SyncHelper from "../Helper/SyncHelper";
 export class OrderService{
     static instance = null;
     constructor() {
-        this.ordersURL = 'http://192.168.0.107:3000/orders';
-        this.orderURL = 'http://192.168.0.107:3000/order';
-        this.mergeURL = 'http://192.168.0.107:3000/orders/merge';
+        this.ordersURL = 'http://192.168.0.15:3000/orders';
+        this.orderURL = 'http://192.168.0.15:3000/order';
+        this.mergeURL = 'http://192.168.0.15:3000/orders/merge';
         this.storageHelper = new AsyncStorageHelper();
         this.syncHelper = SyncHelper.getInstance();
         this.headers = {
@@ -193,21 +193,5 @@ export class OrderService{
                     return this.storageHelper.addItem(order);
                 }
             }).catch();
-    }
-
-    async getOrder(orderId):Promise<Order>{
-        let getURL = this.orderURL + "/" + orderId;
-        try {
-            let res = await fetch(
-                getURL,
-                {
-                    method: 'GET',
-                    headers: this.headers
-                }
-            );
-            return res.json()
-        }catch(error){
-            console.log(error);
-        }
     }
 }

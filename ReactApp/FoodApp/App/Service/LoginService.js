@@ -14,7 +14,7 @@ export class LoginService{
         };
         const formBody = Object.keys(data).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])).join('&');
 
-        let url = 'http://192.168.0.107:3000/auth/sign_in';
+        let url = 'http://192.168.0.15:3000/auth/sign_in';
         let headers = {
             Accept: 'application/json',
             'Content-Type': 'application/x-www-form-urlencoded',
